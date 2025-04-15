@@ -3,7 +3,10 @@ repositories:
     url: https://charts.longhorn.io
   - name: metallb
     url: https://metallb.github.io/metallb
-
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: jetstack
+    url: https://charts.jetstack.io
 
 ---
 releases:
@@ -11,9 +14,24 @@ releases:
   - name: longhorn
     namespace: longhorn-system
     chart: longhorn/longhorn
-    version: 1.8.0
+    version: 1.8.1
 
   - name: metallb
     chart: metallb/metallb
     namespace: metallb-system
     version: 0.14.9
+
+  - name: nginx-ingress-internal
+    namespace: nginx-system
+    chart: ingress-nginx/ingress-nginx
+    version: 4.12.1
+    values:
+      - ./values/nginx-internal.values.yaml
+      
+  # Cert Manager
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: 1.17.0
+    values:
+      - ./values/cert-manager.values.yaml
