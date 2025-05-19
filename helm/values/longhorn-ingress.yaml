@@ -11,7 +11,7 @@ spec:
     - longhorn.vxs.one
     secretName: tls-longhorn-frontend
   rules:
-  - host: longhorn.vxs.one
+  - host: longhorn.k0s.vxs.one
     http:
       paths:
       - path: /
